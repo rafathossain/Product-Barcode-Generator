@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
+    <title>Product Barcode Generator</title>
+
+    <style>
+        .printBox {
+            width: 50%;
+            height: 25%;
+            border: 1px solid #000000;
+            padding: 15px;
+        }
+
+        .p-0 {
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+
+        .table td,
+        .table th {
+            padding: 2px !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container" id="inputField">
+        <div class="row">
+            <div class="col-6 offset-3">
+                <form>
+                    <div class="col-12 text-center" style="margin-top: 10%;">
+                        <h4>Product Barcode Generator</h4>
+                        <hr>
+                    </div>
+                    <div class="col-12 form-group">
+                        <label>Artice No</label>
+                        <input class="form-control" type="text" id="article" placeholder="Enter article number">
+                    </div>
+                    <div class="col-12 form-group">
+                        <label>Colour Code</label>
+                        <input class="form-control" type="text" id="colour" placeholder="Enter colour code">
+                    </div>
+                    <div class="col-12 form-group">
+                        <label>Quantity (Meter)</label>
+                        <input class="form-control" type="text" id="quantity" placeholder="Enter quantity">
+                    </div>
+                    <div class="col-12">
+                        <button type="button" class="btn btn-primary btn-block" onclick="generate()">Generate
+                            Barcode</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="printBox" id="printBox" hidden>
+        <table class="table table-bordered" style="margin-bottom: 0 !important;">
+            <tr>
+                <td>
+                    <p class="text-uppercase p-0" style="font-size: 16px; font-weight: 800;">Article No:</p>
+                </td>
+                <td id="articleIN"></td>
+            </tr>
+            <tr>
+                <td>
+                    <p class="text-uppercase p-0" style="font-size: 16px; font-weight: 800;">Colour Code:</p>
+                </td>
+                <td id="colourIN"></td>
+            </tr>
+            <tr>
+                <td>
+                    <p class="text-uppercase p-0" style="font-size: 16px; font-weight: 800;">Width:</p>
+                </td>
+                <td>112 CM</td>
+            </tr>
+            <tr>
+                <td>
+                    <p class="text-uppercase p-0" style="font-size: 16px; font-weight: 800;">Quantity:</p>
+                </td>
+                <td id="quantityIN"></td>
+            </tr>
+        </table>
+        <p class="text-uppercase p-0 text-center" style="font-size: 20px; font-weight: 900;">Silicon Resin Finish</p>
+        <div class="text-center">
+            <canvas id="ean" height="60" style="margin-top: 5px;"></canvas>
+        </div>
+        <p class="text-uppercase p-0 text-center" style="font-size: 20px; font-weight: 800;">JET BLUE</p>
+    </div>
+
+    <div id="actions" style="margin: 20px;" hidden>
+        <button type="button" class="btn btn-danger" onclick="location.reload()">New Barcode</button>
+        <button type="button" class="btn btn-success" onclick="printDiv()">Print</button>
+    </div>
+
+    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous">
+    </script>
+    <script
+        src="https://www.jqueryscript.net/demo/jQuery-Plugin-To-Generate-International-Article-Number-Barcode-EAN13/dist/jquery-ean13.js">
+    </script>
+    <script type="text/javascript">
+        $("#ean").EAN13("20201019" + getRndInteger(10000, 99999));
+
+        function getRndInteger(min, max) {
+            return Math.floor(Math.random() * (max - min)) + min;
+        }
+
+        function generate() {
+            if ($("#article").val() != "" && $("#colour").val() != "" && $("#quantity").val() != "") {
+                $("#articleIN").html($("#article").val().toUpperCase());
+                $("#colourIN").html($("#colour").val().toUpperCase());
+                $("#quantityIN").html($("#quantity").val() + " METER");
+                $("#printBox").removeAttr('hidden');
+                $("#actions").removeAttr('hidden');
+                $("#inputField").attr('hidden', 'true');
+            } else {
+                alert("Please fill up all the fields.");
+            }
+        }
+
+        function printDiv(){
+            $("#actions").attr('hidden', 'true');
+            window.print();
+        }
+    </script>
+</body>
+
+</html>
