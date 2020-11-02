@@ -53,6 +53,14 @@
                         <label>Quantity (Meter)</label>
                         <input class="form-control" type="text" id="quantity" placeholder="Enter quantity">
                     </div>
+                    <div class="col-12 form-group">
+                        <label>Roll No</label>
+                        <input class="form-control" type="text" id="roll" placeholder="Enter roll no">
+                    </div>
+                    <div class="col-12 form-group">
+                        <label>Lot No</label>
+                        <input class="form-control" type="text" id="lot" placeholder="Enter lot no">
+                    </div>
                     <div class="col-12">
                         <button type="button" class="btn btn-primary btn-block" onclick="generate()">Generate
                             Barcode</button>
@@ -65,35 +73,44 @@
     <div class="printBox" id="printBox" hidden>
         <table class="table table-bordered" style="margin-bottom: 0 !important;">
             <tr>
-                <td>
-                    <p class="text-uppercase p-0" style="font-size: 16px; font-weight: 800;">Article No:</p>
+                <td colspan="1">
+                    <p class="text-uppercase p-0" style="font-size: 18px; font-weight: 900;">Article No</p>
                 </td>
-                <td id="articleIN"></td>
+                <td colspan="3" id="articleIN"></td>
+            </tr>
+            <tr>
+                <td colspan="1">
+                    <p class="text-uppercase p-0" style="font-size: 18px; font-weight: 900;">Colour Code</p>
+                </td>
+                <td colspan="3" id="colourIN"></td>
             </tr>
             <tr>
                 <td>
-                    <p class="text-uppercase p-0" style="font-size: 16px; font-weight: 800;">Colour Code:</p>
-                </td>
-                <td id="colourIN"></td>
-            </tr>
-            <tr>
-                <td>
-                    <p class="text-uppercase p-0" style="font-size: 16px; font-weight: 800;">Width:</p>
+                    <p class="text-uppercase p-0" style="font-size: 18px; font-weight: 900;">Width</p>
                 </td>
                 <td>112 CM</td>
+                <td>
+                    <p class="text-uppercase p-0" style="font-size: 18px; font-weight: 900;">Roll No</p>
+                </td>
+                <td id="rollIN"></td>
             </tr>
             <tr>
                 <td>
-                    <p class="text-uppercase p-0" style="font-size: 16px; font-weight: 800;">Quantity:</p>
+                    <p class="text-uppercase p-0" style="font-size: 20px; font-weight: 900;">Quantity</p>
                 </td>
                 <td id="quantityIN"></td>
+                <td>
+                    <p class="text-uppercase p-0" style="font-size: 20px; font-weight: 900;">Lot</p>
+                </td>
+                <td id="lotIN"></td>
             </tr>
         </table>
         <p class="text-uppercase p-0 text-center" style="font-size: 20px; font-weight: 900;">Silicon Resin Finish</p>
         <div class="text-center">
-            <canvas id="ean" height="60" style="margin-top: 5px;"></canvas>
+            <img src="" id="barcodeImg" alt="barcode">
+            <!-- <canvas id="ean" height="60" style="margin-top: 5px;"></canvas> -->
         </div>
-        <p class="text-uppercase p-0 text-center" style="font-size: 20px; font-weight: 800;">JET BLUE</p>
+        <p class="text-uppercase p-0 text-center" style="font-size: 20px; font-weight: 800; color: blue;">JET BLUE</p>
     </div>
 
     <div id="actions" style="margin: 20px;" hidden>
@@ -111,17 +128,21 @@
         src="https://www.jqueryscript.net/demo/jQuery-Plugin-To-Generate-International-Article-Number-Barcode-EAN13/dist/jquery-ean13.js">
     </script>
     <script type="text/javascript">
-        $("#ean").EAN13("20201019" + getRndInteger(10000, 99999));
+        var barcode = "https://barcodes4.me/barcode/c39/20201019" + getRndInteger(10000, 99999) + ".jpg?IsTextDrawn=1&TextSize=16&resolution=2&height=100";
+        $("#barcodeImg").attr('src', barcode);
+        // $("#ean").EAN13("20201019" + getRndInteger(10000, 99999));
 
         function getRndInteger(min, max) {
             return Math.floor(Math.random() * (max - min)) + min;
         }
 
         function generate() {
-            if ($("#article").val() != "" && $("#colour").val() != "" && $("#quantity").val() != "") {
+            if ($("#article").val() != "" && $("#colour").val() != "" && $("#quantity").val() != "" && $("#roll").val() != "" && $("#lot").val() != "") {
                 $("#articleIN").html($("#article").val().toUpperCase());
                 $("#colourIN").html($("#colour").val().toUpperCase());
                 $("#quantityIN").html($("#quantity").val() + " METER");
+                $("#rollIN").html($("#roll").val());
+                $("#lotIN").html($("#lot").val());
                 $("#printBox").removeAttr('hidden');
                 $("#actions").removeAttr('hidden');
                 $("#inputField").attr('hidden', 'true');
