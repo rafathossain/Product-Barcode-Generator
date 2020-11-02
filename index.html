@@ -128,7 +128,8 @@
         src="https://www.jqueryscript.net/demo/jQuery-Plugin-To-Generate-International-Article-Number-Barcode-EAN13/dist/jquery-ean13.js">
     </script>
     <script type="text/javascript">
-        var barcode = "https://barcodes4.me/barcode/c39/20201019" + getRndInteger(10000, 99999) + ".jpg?IsTextDrawn=1&TextSize=16&resolution=2&height=100";
+        var d = new Date();
+        var barcode = "https://barcodes4.me/barcode/c39/" + d.getTime() + getRndInteger(10000, 99999) + ".jpg?IsTextDrawn=1&TextSize=16&resolution=2&height=100";
         $("#barcodeImg").attr('src', barcode);
         // $("#ean").EAN13("20201019" + getRndInteger(10000, 99999));
 
