@@ -97,7 +97,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </p>
         </div>
 
-        <div class="printBox" id="printBox" style="margin-top: 20px;">
+        <div class="printBox" id="printBox" style="margin-top: 40px;">
             <table class="table table-bordered" style="margin-bottom: 0 !important;">
                 <tr>
                     <td colspan="1">
