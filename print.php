@@ -155,12 +155,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </script>
     <script type="text/javascript">
         var d = new Date();
-        var barcode = "https://barcodes4.me/barcode/c39/" + d.getTime() + getRndInteger(10000, 99999) +
-            ".jpg?IsTextDrawn=1&TextSize=16&resolution=1&height=100";
+        // var barcode = "https://barcodes4.me/barcode/c39/" + d.getTime() + getRndInteger(10000, 99999) +
+        //     ".jpg?IsTextDrawn=1&TextSize=16&resolution=1&height=100";
+        var barcode = "https://barcode.tec-it.com/barcode.ashx?data=" + getRndInteger(100000000000, 999999999999) + "&code=EAN13&multiplebarcodes=false&translate-esc=false&unit=Fit&dpi=96&imagetype=Jpg&rotation=0&color=%23000000&bgcolor=%23ffffff&codepage=Default&qunit=Mm&quiet=0&dmsize=Default"
         $("#barcodeImg").attr('src', barcode);
 
-        var barcode = "https://barcodes4.me/barcode/c39/" + d.getTime() + getRndInteger(10000, 99999) +
-            ".jpg?IsTextDrawn=1&TextSize=16&resolution=1&height=100";
+        // var barcode = "https://barcodes4.me/barcode/c39/" + d.getTime() + getRndInteger(10000, 99999) +
+        //     ".jpg?IsTextDrawn=1&TextSize=16&resolution=1&height=100";
+        var barcode = "https://barcode.tec-it.com/barcode.ashx?data=" + getRndInteger(100000000000, 999999999999) + "&code=EAN13&multiplebarcodes=false&translate-esc=false&unit=Fit&dpi=96&imagetype=Jpg&rotation=0&color=%23000000&bgcolor=%23ffffff&codepage=Default&qunit=Mm&quiet=0&dmsize=Default"
         $("#barcodeImg2").attr('src', barcode);
         // $("#ean").EAN13("20201019" + getRndInteger(10000, 99999));
 
